@@ -52,6 +52,8 @@ let map;
         unicorn = result.Unicorn;
         pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
         displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.', unicorn.Color);
+        var message = unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.';
+        speech(message);
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
@@ -65,6 +67,30 @@ let map;
             $('#request').text('Set Pickup');
         });
     }
+
+    //Weather api request
+    function getWeather(location){
+        let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
+        fetch(url)
+        .then(Response => Response.JSON())
+        .then(Weather => {
+
+
+        
+        })
+    }
+
+
+    //Text to speech
+    function speech(text_msg)
+    {
+        let speech = new SpeechSynthesisUtterance();
+        speech.lang = "en-US";
+        speech.text = text_msg;
+        speech.volume = 1;
+        window.speechSynthesis.speak(speech);
+    }
+
 
     // Register click handler for #request button
     $(function onDocReady() {
