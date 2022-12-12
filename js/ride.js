@@ -57,7 +57,8 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        getWeather(pickupLocation, unicorn)
+        //added the getWeather app but it isn't workig properely
+        getWeather(pickupLocation);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -71,6 +72,10 @@ let map;
     //Weather api request
     function getWeather(location){
         let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
+        let lat = location.latitude;
+        let lon = location.longitude;
+        
+        console.log(location);
         fetch(url)
         .then(Response => Response.JSON())
         .then(Weather => {
