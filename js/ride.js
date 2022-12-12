@@ -75,8 +75,11 @@ let map;
         .then(Response => Response.JSON())
         .then(Weather => {
 
+            let innerHTML ='';
 
-        
+            innerHTML += `<h4> Date: ${Weather.daily[0].date} </h4>
+            <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
+            displayUpdate(innerHTML, unicorn.color);
         })
     }
 
