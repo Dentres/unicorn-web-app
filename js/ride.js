@@ -48,8 +48,6 @@ let map;
         var unicorn;
         var pronoun;
 
-        var tColor = colorPalette();
-
         console.log('Response received from API: ', result);
         unicorn = result.Unicorn;
         pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
@@ -60,8 +58,8 @@ let map;
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         //added the getWeather app but it isn't workig properely
-        console.log(tColor);
-        getWeather(pickupLocation);
+      
+        getWeather(pickupLocation, unicorn);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -72,7 +70,7 @@ let map;
         });
     }
 
-
+/*
     //Color api
     function colorPalette(){
         let url = "http://colormind.io/api/";
@@ -92,9 +90,9 @@ let map;
          http.open("POST",url,true);
          http.send(JSON.stringify(data));
     }
-
+*/
     //Weather api request
-    function getWeather(location){
+    function getWeather(location, unc){
         //let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
         var url = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa";
         let lat = location.latitude;
@@ -112,6 +110,7 @@ let map;
         .catch(function() {
          // catch any errors
         });
+        <h4> Date: ${Weather.daily[0].dt} </h4>
         */
         
         .then(Response => Response.json())
@@ -119,9 +118,9 @@ let map;
 
             let innerHTML ='';
 
-            innerHTML += `<h4> Date: ${Weather.daily[0].dt} </h4>
+            innerHTML += `<h4> Date: ${Math.round(((parseFloat(Weather.daily[0].dt)-273.15)*1.8)+32)} + &deg </h4>
             <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
-            displayUpdate(innerHTML);
+            displayUpdate(innerHTML, unc.Color);
         });
         
     }
