@@ -48,6 +48,8 @@ let map;
         var unicorn;
         var pronoun;
 
+        var tColor = colorPalette();
+
         console.log('Response received from API: ', result);
         unicorn = result.Unicorn;
         pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
@@ -58,6 +60,7 @@ let map;
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         //added the getWeather app but it isn't workig properely
+        console.log(tColor);
         getWeather(pickupLocation);
 
         animateArrival(function animateCallback() {
@@ -101,7 +104,7 @@ let map;
         console.log(location);
         fetch(url)
 
-        
+        /*
         .then(function(resp) { return resp.json() }) // Convert data to json
         .then(function(data) {
             formatWeather(data);
@@ -109,17 +112,18 @@ let map;
         .catch(function() {
          // catch any errors
         });
-        /*
+        */
+        
         .then(Response => Response.json())
         .then(Weather => {
 
             let innerHTML ='';
 
-            innerHTML += `<h4> Date: ${Weather.daily[0].date} </h4>
+            innerHTML += `<h4> Date: ${Weather.daily[0].dt} </h4>
             <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
-            displayUpdate(innerHTML, unicorn.color);
+            displayUpdate(innerHTML);
         });
-        */
+        
     }
 
     //Format Weather data function
