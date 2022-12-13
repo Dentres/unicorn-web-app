@@ -58,7 +58,7 @@ let map;
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         //added the getWeather app but it isn't workig properely
-        getWeather(pickupLocation);
+        getWeather(pickupLocation, unicorn);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -91,11 +91,12 @@ let map;
     }
 
     //Weather api request
-    function getWeather(location){
+    function getWeather(location, unicorn){
         //let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
         var url = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa";
         let lat = location.latitude;
         let lon = location.longitude;
+
         
         console.log(location);
         fetch(url)
@@ -109,6 +110,7 @@ let map;
          // catch any errors
         });
         */
+
 
         .then(Response => Response.json())
         .then(Weather => {
