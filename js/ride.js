@@ -69,26 +69,6 @@ let map;
         });
     }
 
-    //Weather api request
-    function getWeather(location){
-        let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
-        let lat = location.latitude;
-        let lon = location.longitude;
-        
-        console.log(location);
-        fetch(url)
-        .then(Response => Response.JSON())
-        .then(Weather => {
-
-            let innerHTML ='';
-
-            innerHTML += `<h4> Date: ${Weather.daily[0].date} </h4>
-            <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
-            displayUpdate(innerHTML, unicorn.color);
-        })
-    }
-
-
     //Text to speech
     function speech(text_msg)
     {
@@ -213,3 +193,43 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
+
+    //Color api
+    function colorPalette(){
+        let url = "http://colormind.io/api/";
+        let data = {
+            model: "default",
+            input: [[44,43,44],[90,83,82],"N","N","N"]
+        }
+
+        var http = new XMLHttpRequest();
+
+        http.onreadystatechange = function(){
+            if(http.readyState == 4 && http.status == 200){
+                var palette = JSON.parse(http.responseText).result;
+            }
+         }
+
+         http.open("POST",url,true);
+         http.send(JSON.stringify(data));
+    }
+
+    //Weather api request
+    function getWeather(location){
+        //let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
+        let url = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa";
+        let lat = location.latitude;
+        let lon = location.longitude;
+        
+        console.log(location);
+        fetch(url)
+        .then(Response => Response.JSON())
+        .then(Weather => {
+
+            let innerHTML ='';
+
+            innerHTML += `<h4> Date: ${Weather.daily[0].date} </h4>
+            <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
+            displayUpdate(innerHTML, unicorn.color);
+        })
+    }
