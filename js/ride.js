@@ -118,7 +118,7 @@ let map;
 
             let innerHTML ='';
 
-            innerHTML += `<h4> ${Weather.daily[0].weather.description} </h4>
+            innerHTML += `<h4> ${Weather.daily[0].weather[0].description} ${Weather.daily[0].weather[0].icon}</h4>
             <p>High: ${Math.round(((parseFloat(Weather.daily[0].temp.max)-273.15)*1.8)+32)}&deg | Low: ${Math.round(((parseFloat(Weather.daily[0].temp.min)-273.15)*1.8)+32)}&deg </p>
             `;
             displayUpdate(innerHTML, unc.Color);
