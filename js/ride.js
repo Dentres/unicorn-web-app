@@ -223,6 +223,8 @@ function displayUpdate(text, color='green') {
         
         console.log(location);
         fetch(url)
+
+        /*
         .then(function(resp) { return resp.json() }) // Convert data to json
         .then(function(data) {
         console.log(data);
@@ -230,7 +232,8 @@ function displayUpdate(text, color='green') {
         .catch(function() {
          // catch any errors
         });
-        /*
+        */
+
         .then(Response => Response.JSON())
         .then(Weather => {
 
@@ -240,5 +243,5 @@ function displayUpdate(text, color='green') {
             <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
             displayUpdate(innerHTML, unicorn.color);
         });
-        */
+        
     }
