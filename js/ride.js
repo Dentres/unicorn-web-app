@@ -234,7 +234,7 @@ function displayUpdate(text, color='green') {
         });
         */
 
-        .then(Response => Response.JSON())
+        .then(Response => Response.json())
         .then(Weather => {
 
             let innerHTML ='';
