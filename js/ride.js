@@ -58,7 +58,7 @@ let map;
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         //added the getWeather app but it isn't workig properely
-        getWeather(pickupLocation, unicorn);
+        getWeather(pickupLocation);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -91,7 +91,7 @@ let map;
     }
 
     //Weather api request
-    function getWeather(location, unicorn){
+    function getWeather(location){
         //let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
         var url = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa";
         let lat = location.latitude;
@@ -101,17 +101,15 @@ let map;
         console.log(location);
         fetch(url)
 
-        /*
+        
         .then(function(resp) { return resp.json() }) // Convert data to json
         .then(function(data) {
-        console.log(data);
+            formatWeather(data);
         })
         .catch(function() {
          // catch any errors
         });
-        */
-
-
+        /*
         .then(Response => Response.json())
         .then(Weather => {
 
@@ -121,9 +119,19 @@ let map;
             <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
             displayUpdate(innerHTML, unicorn.color);
         });
-        
+        */
     }
 
+    //Format Weather data function
+    function formatWeather(dat)
+    {
+        //Converts the data into fahrenheit
+        var fahrenheit = Math.round(((parseFloat(dat.main.temp)-273.15)*1.8)+32); 
+
+        document.getElementById('description').innerHTML = dat.weather[0].description;
+	    document.getElementById('temp').innerHTML = fahrenheit + '&deg;';
+	    document.getElementById('location').innerHTML = dat.name;
+    }
 
     //Text to speech
     function speech(text_msg)
