@@ -217,12 +217,20 @@ function displayUpdate(text, color='green') {
     //Weather api request
     function getWeather(location){
         //let url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb0b408d53d58409cac90931b63873b7";
-        let url = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa";
+        var url = "https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa";
         let lat = location.latitude;
         let lon = location.longitude;
         
         console.log(location);
         fetch(url)
+        .then(function(resp) { return resp.json() }) // Convert data to json
+        .then(function(data) {
+        console.log(data);
+        })
+        .catch(function() {
+         // catch any errors
+        });
+        /*
         .then(Response => Response.JSON())
         .then(Weather => {
 
@@ -231,5 +239,6 @@ function displayUpdate(text, color='green') {
             innerHTML += `<h4> Date: ${Weather.daily[0].date} </h4>
             <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
             displayUpdate(innerHTML, unicorn.color);
-        })
+        });
+        */
     }
