@@ -118,8 +118,8 @@ let map;
 
             let innerHTML ='';
 
-            innerHTML += `<h4> Date: ${Math.round(((parseFloat(Weather.daily[0].dt)-273.15)*1.8)+32)} + &deg </h4>
-            <p>Sunrise: ${Weather.daily[0].sunrise} / Sunset: ${Weather.daily[0].sunset} </p>`;
+            innerHTML += `<h4> Date: ${Weather.daily[0].dt} + &deg </h4>
+            <p>High: ${Math.round(((parseFloat(Weather.daily[0].max)-273.15)*1.8)+32)}+ &deg / Low: ${Math.round(((parseFloat(Weather.daily[0].max)-273.15)*1.8)+32)}+ &deg </p>`;
             displayUpdate(innerHTML, unc.Color);
         });
         
